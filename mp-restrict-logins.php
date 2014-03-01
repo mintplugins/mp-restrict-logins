@@ -2,7 +2,7 @@
 /*
 Plugin Name: MP Restrict Logins
 Plugin URI: http://moveplugins.com
-Description: Prevent 1 account from being used many times at once.
+Description: Keep "Subscriber" accounts from being used simultaneously. Perfect for subscription websites.
 Version: 1.0.0.0
 Author: Move Plugins
 Author URI: http://moveplugins.com
@@ -139,9 +139,9 @@ function mp_restrict_logins_include_files(){
 		require( MP_RESTRICT_LOGINS_PLUGIN_DIR . 'includes/misc-functions/clear-settings.php' );
 		
 		/**
-		 * Kick The Can Function
+		 * Extend User Session Function
 		 */
-		require( MP_RESTRICT_LOGINS_PLUGIN_DIR . 'includes/misc-functions/kick-the-can.php' );
+		require( MP_RESTRICT_LOGINS_PLUGIN_DIR . 'includes/misc-functions/extend-user-session.php' );
 					
 	}
 }

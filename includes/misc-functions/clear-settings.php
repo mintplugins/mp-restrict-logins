@@ -26,7 +26,7 @@ function mp_restrict_logins_remove_block_button( $profileuser ){
 	
 	?>
     
-    <h3><?php _e('Remove Login Block - MP Rescrict Logins Plugin') ?></h3>
+    <h3><?php _e( 'Remove Login Block - MP Rescrict Logins Plugin', 'mp_restrict_logins' ) ?></h3>
     
     <a class="button" href="<?php echo add_query_arg( array( 'user_id' => $profileuser->ID, 'mp_restrict_logins_remove_block' => true ), admin_url( 'user-edit.php' ) ); ?>"><?php echo __( 'Remove all blocks for this user', 'mp_restrict_logins' ); ?></a>
 
@@ -50,7 +50,7 @@ function mp_restrict_logins_remove_block(){
 	if ( isset( $_GET['mp_restrict_logins_remove_block'] ) && current_user_can( 'create_users' ) ){
 		
 		//Set the timeout for this use to the current time. They have stopped 'holding' control of this account.
-    	update_option( 'user_timeout_' . get_current_user_id(), time() );
+    	delete_transient( 'user_timeout_' . get_current_user_id() );
 		
 		//Show notice that block is removed
 		add_action( 'admin_notices', function(){ 
