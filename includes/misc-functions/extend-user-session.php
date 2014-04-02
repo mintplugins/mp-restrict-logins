@@ -24,13 +24,24 @@
  */
 function mp_restrict_logins_extend_session( $user_id ){
 	
-	//Re Set "transient" to tell system that user is still logged in and 'holding' this account for another 31 seconds (make sure it's double your heartbeat tick).
-	//Think of this as "Kicking the can down the road".	Like the US debt, it'll crash eventually, but not right now.	
-	set_transient( 'mp_restrict_logins_user_timeout_' . $user_id, time() + 31, 24 * HOUR_IN_SECONDS );
+	
+	//If we're not doing ajax
+	if (!defined('DOING_AJAX')){	
 		
-	//Set "cookie" upon user sign in - expires 20 seconds from the current time.		
-	setcookie( 'mp_restrict_logins_user_session_timeout_' . $user_id, time() + 31, 2147483647, '/' ); 
-	$_COOKIE['mp_restrict_logins_user_session_timeout_' . $user_id] =  time() + 31;
+		//Re Set "transient" to tell system that user is still logged in and 'holding' this account for another 31 seconds (make sure it's double your heartbeat tick).
+		//Think of this as "Kicking the can down the road".	Like the US debt, it'll crash eventually, but not right now.	
+		set_transient( 'mp_restrict_logins_user_timeout_' . $user_id, time() + 31, 24 * HOUR_IN_SECONDS );
+		
+		//Set "session" upon user sign in - expires 31 seconds from the current time.	
+		$_SESSION['mp_restrict_logins_user_session_timeout_' . $user_id] = time() + 31;
+		
+		/* Let's keep this here for testing purposes when we need it 			
+		echo 'Transient extended to ' . get_transient( 'mp_restrict_logins_user_timeout_' . $user_id) . ' for user ' . $user_id;
+		echo '<br />';
+		echo 'Session extended to ' . $_SESSION['mp_restrict_logins_user_session_timeout_' . $user_id];
+		//*/				
+	}
+						
 	
 }
 

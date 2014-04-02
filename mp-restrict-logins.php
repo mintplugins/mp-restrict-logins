@@ -3,7 +3,7 @@
 Plugin Name: MP Restrict Logins
 Plugin URI: http://moveplugins.com
 Description: Keep "Subscriber" accounts from being used simultaneously. Perfect for subscription websites.
-Version: 1.0.0.2
+Version: 1.0.0.3
 Author: Move Plugins
 Author URI: http://moveplugins.com
 Text Domain: mp_restrict_logins
@@ -34,7 +34,7 @@ License: GPL2
 */
 // Plugin version
 if( !defined( 'MP_RESTRICT_LOGINS_VERSION' ) )
-	define( 'MP_RESTRICT_LOGINS_VERSION', '1.0.0.2' );
+	define( 'MP_RESTRICT_LOGINS_VERSION', '1.0.0.3' );
 
 // Plugin Folder URL
 if( !defined( 'MP_RESTRICT_LOGINS_PLUGIN_URL' ) )

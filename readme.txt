@@ -33,6 +33,9 @@ No setup is needed! Just install it and go.
 
 == Changelog ==
 
+= 1.0.0.3 = April 2, 2014
+Change session cookies to PHP session variables
+
 = 1.0.0.2 = April 1, 2014
 * Show error messages even if user isn’t logged out to wp-login page
 
