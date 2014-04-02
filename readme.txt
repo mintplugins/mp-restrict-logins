@@ -33,6 +33,9 @@ No setup is needed! Just install it and go.
 
 == Changelog ==
 
+= 1.0.0.2 = April 1, 2014
+* Show error messages even if user isn’t logged out to wp-login page
+
 = 1.0.0.1 = March 1, 2014
 * Deliver better error notices and auto redirect user when logout needed.
 

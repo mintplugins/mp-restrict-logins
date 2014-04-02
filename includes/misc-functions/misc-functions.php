@@ -25,7 +25,7 @@
  function mp_restrict_logins_page_load_check(){
 					
 	//If this user is a subscriber
-	if ( !current_user_can( 'delete_posts' ) ){
+	if ( !current_user_can( 'publish_posts' ) && !current_user_can( 'delete_posts') &&  !current_user_can( 'edit_posts') && !current_user_can( 'upload_files') ){
 
 		$user_id = get_current_user_id();
 
@@ -144,8 +144,8 @@ add_action( 'wp_ajax_nopriv_mp_restrict_logins_log_user_out', 'mp_restrict_login
 function mp_restrict_logins_user_login($user_login, $user) {
 	
 	//If this user is a subscriber
-	if ( !current_user_can( 'delete_posts' ) ){
-		
+	if ( !current_user_can( 'publish_posts' ) && !current_user_can( 'delete_posts') &&  !current_user_can( 'edit_posts') && !current_user_can( 'upload_files') ){
+			
 		$user_id = $user->ID;
 		
 		//See what time this session was set to be cancelled at
@@ -195,12 +195,12 @@ add_action('wp_login', 'mp_restrict_logins_user_login', 10, 2);
 function mp_restrict_logins_clear_transient_on_logout() {
 	
 	//If this user is a subscriber
-	if ( !current_user_can( 'delete_posts' ) ){
+	if ( !current_user_can( 'publish_posts' ) && !current_user_can( 'delete_posts') &&  !current_user_can( 'edit_posts') && !current_user_can( 'upload_files') ){
 		
 		$user_id = get_current_user_id();
 		
 		//Remove the cookie that says we should show an error
-		setcookie("mp_restrict_logins_oops", "", time()-3600, '/' );
+		//setcookie("mp_restrict_logins_oops", "", time()-3600, '/' );
 		
 		//Remove "second time or later" cookie 
 		setcookie( 'mp_restrict_logins_second_time_or_later' . $user_id, false, 2147483647, '/' ); 
@@ -224,26 +224,30 @@ add_action('wp_logout', 'mp_restrict_logins_clear_transient_on_logout');
  */
 function mp_restrict_logins_cookie_check(){
 	
-	if ( isset( $_GET['session_timed_out'] ) ){
-		global $mp_restrict_logins_oops;
+	//If this user is a subscriber
+	if ( !current_user_can( 'publish_posts' ) && !current_user_can( 'delete_posts') &&  !current_user_can( 'edit_posts') && !current_user_can( 'upload_files') ){
 		
-		$mp_restrict_logins_oops = 'session_timed_out';
-	}
-	//If we should show the error
-	elseif( isset( $_COOKIE["mp_restrict_logins_oops"] )){
-		
-		global $mp_restrict_logins_oops;
-		
-		if( $_COOKIE["mp_restrict_logins_oops"] ){
+		if ( isset( $_GET['session_timed_out'] ) ){
+			global $mp_restrict_logins_oops;
 			
-			//Set a global variable used to show error later in the page
-			$mp_restrict_logins_oops = 'someone_else_logged_in';
-			
-			//Remove the cookie that says we should show an error
-			setcookie("mp_restrict_logins_oops", "", time()-3600, '/' );
-		
+			$mp_restrict_logins_oops = 'session_timed_out';
 		}
-		
+		//If we should show the error
+		elseif( isset( $_COOKIE["mp_restrict_logins_oops"] )){
+			
+			global $mp_restrict_logins_oops;
+			
+			if( $_COOKIE["mp_restrict_logins_oops"] ){
+				
+				//Set a global variable used to show error later in the page
+				$mp_restrict_logins_oops = 'someone_else_logged_in';
+				
+				//Remove the cookie that says we should show an error
+				//setcookie("mp_restrict_logins_oops", "", time()-3600, '/' );
+			
+			}
+			
+		}
 	}
 };
 add_action( 'init', 'mp_restrict_logins_cookie_check' );
@@ -284,6 +288,8 @@ function mp_restrict_logins_enqueue_errors(){
 
 }
 add_action( 'login_head', 'mp_restrict_logins_enqueue_errors' );
+add_action( 'wp_enqueue_scripts', 'mp_restrict_logins_enqueue_errors' );
+add_action( 'admin_enqueue_scripts', 'mp_restrict_logins_enqueue_errors' );
 
 /**
  * Change heartbeat to pulse every 15 seconds
@@ -335,7 +341,7 @@ function mp_restrict_logins_heartbeat_recieved( $response, $data ) {
 	$response['kicked_can'] = "Not Subscriber so NOT KICKED!";
 	
 	//If this user is a subscriber
-	if ( !current_user_can( 'delete_posts' ) ){
+	if ( !current_user_can( 'publish_posts' ) && !current_user_can( 'delete_posts') &&  !current_user_can( 'edit_posts') && !current_user_can( 'upload_files') ){
 		
 		$response['kicked_can'] = "Subscriber but no logged-in-check so NOT KICKED!";
 		
@@ -357,7 +363,7 @@ function mp_restrict_logins_heartbeat_recieved( $response, $data ) {
 								
 				//Log user out
 				wp_logout();
-				
+								
 			}
 			//This user has never left after logging in.
 			else{
@@ -405,7 +411,7 @@ function mp_restrict_logins_heartbeat_js() {
 			if ( !data['kicked_can'] )
 				return;
 
-			//console.log(data['kicked_can']);
+			console.log(data['kicked_can']);
 				
 		});
 	});
