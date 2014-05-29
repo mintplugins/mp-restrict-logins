@@ -1,6 +1,6 @@
 === MP Restrict Logins ===
 Contributors: johnstonphilip
-Donate link: http://moveplugins.com/
+Donate link: http://mintplugins.com/
 Tags: subscribers, limit logins
 Requires at least: 3.0.1
 Tested up to: 3.5
@@ -33,9 +33,12 @@ No setup is needed! Just install it and go.
 
 == Changelog ==
 
-= 1.0.0.3 = April 2, 2014
-Change session cookies to PHP session variables
+= 1.0.0.4 = May 29, 2014
+* Move To Mint
 
+= 1.0.0.3 = April 2, 2014
+* Change session cookies to PHP session variables
+ 
 = 1.0.0.2 = April 1, 2014
 * Show error messages even if user isn’t logged out to wp-login page
 

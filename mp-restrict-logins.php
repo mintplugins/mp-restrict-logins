@@ -1,21 +1,21 @@
 <?php
 /*
 Plugin Name: MP Restrict Logins
-Plugin URI: http://moveplugins.com
+Plugin URI: http://mintplugins.com
 Description: Keep "Subscriber" accounts from being used simultaneously. Perfect for subscription websites.
-Version: 1.0.0.3
-Author: Move Plugins
-Author URI: http://moveplugins.com
+Version: 1.0.0.4
+Author: Mint Plugins
+Author URI: http://mintplugins.com
 Text Domain: mp_restrict_logins
 Domain Path: languages
 License: GPL2
 */
 
-/*  Copyright 2014  Phil Johnston  (email : phil@moveplugins.com)
+/*  Copyright 2014  Phil Johnston  (email : phil@mintplugins.com)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as 
-    published by the Free Software Move Plugins Core.
+    published by the Free Software Mint Plugins Core.
 
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -24,7 +24,7 @@ License: GPL2
 
     You should have received a copy of the GNU General Public License
     along with this program; if not, write to the Free Software
-    Move Plugins Core, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+    Mint Plugins Core, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 /*
@@ -34,7 +34,7 @@ License: GPL2
 */
 // Plugin version
 if( !defined( 'MP_RESTRICT_LOGINS_VERSION' ) )
-	define( 'MP_RESTRICT_LOGINS_VERSION', '1.0.0.3' );
+	define( 'MP_RESTRICT_LOGINS_VERSION', '1.0.0.4' );
 
 // Plugin Folder URL
 if( !defined( 'MP_RESTRICT_LOGINS_PLUGIN_URL' ) )

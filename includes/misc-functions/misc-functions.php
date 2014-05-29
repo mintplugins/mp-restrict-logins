@@ -3,13 +3,13 @@
 /**
  * Functions used by the MP Restrict Logins Plugin
  *
- * @link http://moveplugins.com/doc/
+ * @link http://mintplugins.com/doc/
  * @since 1.0.0
  *
  * @package    MP Restrict Logins
  * @subpackage functions
  *
- * @copyright   Copyright (c) 2014, Move Plugins
+ * @copyright   Copyright (c) 2014, Mint Plugins
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @author      Philip Johnston
  */
@@ -18,7 +18,7 @@
  * Check if the subscriber should be logged in on page loads
  *
  * @since    1.0.0
- * @link     http://moveplugins.com/doc/
+ * @link     http://mintplugins.com/doc/
  * @see      function_name()
  * @param    array $args See link for description.
  * @return   void
@@ -104,7 +104,7 @@ add_action( 'wp_loaded', 'mp_restrict_logins_page_load_check' );
  * Enqueue the scripts used to log the user out using ajax. Conditional load based on previous check stored in $mp_restrict_logins_log_user_out;
  *
  * @since    1.0.0
- * @link     http://moveplugins.com/doc/
+ * @link     http://mintplugins.com/doc/
  * @see      function_name()
  * @param    array $args See link for description.
  * @return   void
@@ -130,7 +130,7 @@ add_action( 'admin_enqueue_scripts', 'mp_restrict_logins_enqueue_ajax_logout' );
  * Ajax callback function used to log the user out
  *
  * @since    1.0.0
- * @link     http://moveplugins.com/doc/
+ * @link     http://mintplugins.com/doc/
  * @see      function_name()
  * @param    array $args See link for description.
  * @return   void
@@ -155,7 +155,7 @@ add_action( 'wp_ajax_nopriv_mp_restrict_logins_log_user_out', 'mp_restrict_login
  * Set user transient upon login or log user out if somebody's already logged in
  *
  * @since    1.0.0
- * @link     http://moveplugins.com/doc/
+ * @link     http://mintplugins.com/doc/
  * @see      function_name()
  * @param    array $args See link for description.
  * @return   void
@@ -206,7 +206,7 @@ add_action('wp_login', 'mp_restrict_logins_user_login', 10, 2);
  * Delete user transient upon log out
  *
  * @since    1.0.0
- * @link     http://moveplugins.com/doc/
+ * @link     http://mintplugins.com/doc/
  * @see      function_name()
  * @param    array $args See link for description.
  * @return   void
@@ -236,7 +236,7 @@ add_action('wp_logout', 'mp_restrict_logins_clear_transient_on_logout');
  * Enqueue JS error message on login page
  *
  * @since    1.0.0
- * @link     http://moveplugins.com/doc/
+ * @link     http://mintplugins.com/doc/
  * @see      function_name()
  * @param    array $args See link for description.
  * @return   void
@@ -283,7 +283,7 @@ add_action( 'admin_enqueue_scripts', 'mp_restrict_logins_enqueue_errors' );
  * Change heartbeat to pulse every 15 seconds
  *
  * @since    1.0.0
- * @link       http://moveplugins.com/doc/
+ * @link       http://mintplugins.com/doc/
  * @see      function_name()
  * @param  array $args See link for description.
  * @return   void
@@ -298,7 +298,7 @@ add_filter( 'heartbeat_settings', 'mp_restrict_logins_heartbeat_settings' );
  * Change heartbeat to pulse every 15 seconds
  *
  * @since    1.0.0
- * @link       http://moveplugins.com/doc/
+ * @link       http://mintplugins.com/doc/
  * @see      function_name()
  * @param  array $args See link for description.
  * @return   void
@@ -331,7 +331,7 @@ add_action( 'wp_enqueue_scripts', 'mp_restrict_logins_heartbeat_scripts' );
  * Modify data  upon heartbeat tick and send message back
  *
  * @since    1.0.0
- * @link       http://moveplugins.com/doc/
+ * @link       http://mintplugins.com/doc/
  * @see      function_name()
  * @param  array $args See link for description.
  * @return   void
@@ -389,7 +389,7 @@ add_filter( 'heartbeat_received', 'mp_restrict_logins_heartbeat_recieved', 10, 2
  * Use this function to test using the console.
  *
  * @since    1.0.0
- * @link       http://moveplugins.com/doc/
+ * @link       http://mintplugins.com/doc/
  * @see      function_name()
  * @param  array $args See link for description.
  * @return   void
