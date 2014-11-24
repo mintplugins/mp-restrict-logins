@@ -28,11 +28,14 @@
 	if( !session_id() )
         session_start();
 		
+	global $current_user; 
+	get_currentuserinfo(); 
+		
 	//If we're not doing ajax
 	if (!defined('DOING_AJAX')){	
 			
 		//If this user is a subscriber
-		if ( !current_user_can( 'publish_posts' ) && !current_user_can( 'delete_posts') &&  !current_user_can( 'edit_posts') && !current_user_can( 'upload_files') ){
+		if ( user_can( $current_user, "subscriber" ) ){
 	
 			$user_id = get_current_user_id();
 	
@@ -162,8 +165,15 @@ add_action( 'wp_ajax_nopriv_mp_restrict_logins_log_user_out', 'mp_restrict_login
  */
 function mp_restrict_logins_user_login($user_login, $user) {
 	
+	//global $current_user; 
+	//get_currentuserinfo(); 
+	
+	//wp_mail('johnstonphilip@gmail.com', 'User Logging in...', 'yeah');
+	
 	//If this user is a subscriber
-	if ( !current_user_can( 'publish_posts' ) && !current_user_can( 'delete_posts') &&  !current_user_can( 'edit_posts') && !current_user_can( 'upload_files') ){
+	if ( user_can( $user, "subscriber" )  ){
+		
+		//wp_mail('johnstonphilip@gmail.com', 'User is a subscriber', 'yeah');
 			
 		$user_id = $user->ID;
 		
@@ -187,6 +197,8 @@ function mp_restrict_logins_user_login($user_login, $user) {
 		
 		//If this user is signing in and is the only one using the account
 		else{
+			
+			//wp_mail('johnstonphilip@gmail.com', 'Logging user in an attempting extend session...', 'yeah');
 			
 			//destroy "second time or later" cookie - because this is the first time
 			setcookie( 'mp_restrict_logins_second_time_or_later' . $user_id, false, 2147483647, '/' ); 
@@ -213,8 +225,11 @@ add_action('wp_login', 'mp_restrict_logins_user_login', 10, 2);
  */
 function mp_restrict_logins_clear_transient_on_logout() {
 	
+	global $current_user; 
+	get_currentuserinfo(); 
+	
 	//If this user is a subscriber
-	if ( !current_user_can( 'publish_posts' ) && !current_user_can( 'delete_posts') &&  !current_user_can( 'edit_posts') && !current_user_can( 'upload_files') ){
+	if ( user_can( $current_user, "subscriber" )  ){
 		
 		$user_id = get_current_user_id();
 		
@@ -305,8 +320,11 @@ add_filter( 'heartbeat_settings', 'mp_restrict_logins_heartbeat_settings' );
  */
 function mp_restrict_logins_heartbeat_scripts($hook_suffix) {
 	
+	global $current_user; 
+	get_currentuserinfo(); 
+	
 	//If this user is a subscriber
-	if ( is_user_logged_in() && !current_user_can( 'publish_posts' ) && !current_user_can( 'delete_posts') &&  !current_user_can( 'edit_posts') && !current_user_can( 'upload_files') ){
+	if ( is_user_logged_in() && user_can( $current_user, "subscriber" )  ){
 		// Make sure the JS part of the Heartbeat API is loaded.
 		wp_enqueue_script('heartbeat');
 	
@@ -340,8 +358,11 @@ function mp_restrict_logins_heartbeat_recieved( $response, $data ) {
  	
 	$response['kicked_can'] = "Not Subscriber so NOT KICKED!";
 	
+	global $current_user; 
+	get_currentuserinfo(); 
+	
 	//If this user is a subscriber
-	if ( !current_user_can( 'publish_posts' ) && !current_user_can( 'delete_posts') &&  !current_user_can( 'edit_posts') && !current_user_can( 'upload_files') ){
+	if ( user_can( $current_user, "subscriber" )  ){
 		
 		$response['kicked_can'] = "Subscriber but no logged-in-check so NOT KICKED!";
 		
