@@ -3,8 +3,8 @@ Contributors: johnstonphilip
 Donate link: http://mintplugins.com/
 Tags: subscribers, limit logins
 Requires at least: 3.0.1
-Tested up to: 3.5
-Stable tag: 1.0.0.1
+Tested up to: 4.1
+Stable tag: 1.0.0.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,6 +32,9 @@ No setup is needed! Just install it and go.
 == Screenshots ==
 
 == Changelog ==
+
+= 1.0.0.5 = November 24, 2014
+* General Improvements to the speed and functionality of checks
 
 = 1.0.0.4 = May 29, 2014
 * Move To Mint

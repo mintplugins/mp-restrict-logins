@@ -3,7 +3,7 @@
 Plugin Name: MP Restrict Logins
 Plugin URI: http://mintplugins.com
 Description: Keep "Subscriber" accounts from being used simultaneously. Perfect for subscription websites.
-Version: 1.0.0.4
+Version: 1.0.0.5
 Author: Mint Plugins
 Author URI: http://mintplugins.com
 Text Domain: mp_restrict_logins
@@ -34,7 +34,7 @@ License: GPL2
 */
 // Plugin version
 if( !defined( 'MP_RESTRICT_LOGINS_VERSION' ) )
-	define( 'MP_RESTRICT_LOGINS_VERSION', '1.0.0.4' );
+	define( 'MP_RESTRICT_LOGINS_VERSION', '1.0.0.5' );
 
 // Plugin Folder URL
 if( !defined( 'MP_RESTRICT_LOGINS_PLUGIN_URL' ) )
